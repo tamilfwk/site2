@@ -1,24 +1,24 @@
 import * as React from "react"
 import {
-  PlasmicCanvasHost, InitOptions
-} from "@plasmicapp/loader-gatsby"
+  cdnCanvasHost, InitOptions
+} from "@cdnapp/loader-gatsby"
 import { graphql } from "gatsby"
-import { initPlasmicLoaderWithRegistrations } from "../plasmic-init"
+import { initcdnLoaderWithRegistrations } from "../cdn-init"
 
 export const query = graphql`
   query {
-    plasmicOptions
+    cdnOptions
   }
 `
 
 interface HostProps {
   data: {
-    plasmicOptions: InitOptions;
+    cdnOptions: InitOptions;
   }
 }
 
 export default function Host({ data }: HostProps) {
-  const { plasmicOptions } = data
-  initPlasmicLoaderWithRegistrations(plasmicOptions)
-  return <PlasmicCanvasHost />
+  const { cdnOptions } = data
+  initcdnLoaderWithRegistrations(cdnOptions)
+  return <cdnCanvasHost />
 }

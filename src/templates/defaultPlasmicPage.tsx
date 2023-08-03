@@ -1,39 +1,39 @@
 import React from "react";
 import Helmet from "react-helmet";
 import {
-  PlasmicComponent,
-  PlasmicRootProvider,
+  cdnComponent,
+  cdnRootProvider,
   InitOptions,
   ComponentRenderData,
-} from "@plasmicapp/loader-gatsby";
+} from "@cdnapp/loader-gatsby";
 import { graphql, PageProps } from "gatsby";
-import { initPlasmicLoaderWithRegistrations } from "../plasmic-init";
+import { initcdnLoaderWithRegistrations } from "../cdn-init";
 
 export const query = graphql`
   query ($path: String) {
-    plasmicComponents(componentNames: [$path])
-    plasmicOptions
+    cdnComponents(componentNames: [$path])
+    cdnOptions
   }
 `;
 
-interface PlasmicGatsbyPageProps extends PageProps {
+interface cdnGatsbyPageProps extends PageProps {
   data: {
-    plasmicOptions: InitOptions
-    plasmicComponents: ComponentRenderData
+    cdnOptions: InitOptions
+    cdnComponents: ComponentRenderData
   }
 }
 
-const PlasmicGatsbyPage = ({ data, location }: PlasmicGatsbyPageProps) => {
+const cdnGatsbyPage = ({ data, location }: cdnGatsbyPageProps) => {
   const {
-    plasmicComponents,
-    plasmicOptions,
+    cdnComponents,
+    cdnOptions,
   } = data;
-  const pageMeta = plasmicComponents.entryCompMetas[0];
+  const pageMeta = cdnComponents.entryCompMetas[0];
   const pageMetadata = pageMeta.pageMetadata;
   return (
-    <PlasmicRootProvider
-      loader={initPlasmicLoaderWithRegistrations(plasmicOptions)}
-      prefetchedData={plasmicComponents}
+    <cdnRootProvider
+      loader={initcdnLoaderWithRegistrations(cdnOptions)}
+      prefetchedData={cdnComponents}
       pageParams={pageMeta.params}
       pageQuery={Object.fromEntries(new URLSearchParams(location.search))}
       Head={Helmet}
@@ -44,9 +44,9 @@ const PlasmicGatsbyPage = ({ data, location }: PlasmicGatsbyPageProps) => {
         {pageMetadata?.description && <meta property="og:description" content={pageMetadata.description} />}
         {pageMetadata?.openGraphImageUrl && <meta property="og:image" content={pageMetadata.openGraphImageUrl} />}
       </Helmet>
-      <PlasmicComponent component={pageMeta.displayName} />
-    </PlasmicRootProvider>
+      <cdnComponent component={pageMeta.displayName} />
+    </cdnRootProvider>
   );
 };
 
-export default PlasmicGatsbyPage;
+export default cdnGatsbyPage;

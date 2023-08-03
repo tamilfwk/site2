@@ -2,7 +2,7 @@
   "name": "tmp-cpa",
   "version": "1.0.0",
   "private": true,
-  "description": "Plasmic app for vqdqPjqF2wMwkXdpwx7dxa",
+  "description": "cdn app for vqdqPjqF2wMwkXdpwx7dxa",
   "keywords": [
     "gatsby"
   ],
@@ -15,7 +15,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@plasmicapp/loader-gatsby": "^1.0.287",
+    "@cdnapp/loader-gatsby": "^1.0.287",
     "gatsby": "^5.11.0",
     "gatsby-plugin-react-helmet": "^6.11.0",
     "react": "^18.2.0",
